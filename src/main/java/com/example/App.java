@@ -1,6 +1,9 @@
 package com.example;
 
 
+import com.example.beans.Client;
+import com.example.beans.ClientSetter;
+import com.example.beans.IPrinter;
 import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

@@ -1,4 +1,4 @@
-package com.example;
+package com.example.beans;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -6,34 +6,21 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Map;
 
 
 @Component
 @Scope("prototype")
 public class Client {
     @Autowired @Console
-    private final IPrinter printer;
-
+    private IPrinter printer;
     @Autowired @File
-    private final IPrinter printer2;
+    private IPrinter printer2;
 
     @Autowired
     private List<IPrinter> allPrinters;
-
-    public Client() {
-        printer = null;
-        printer2 = null;
-    }
-
-    public Client(IPrinter printer) {
-        this.printer = printer;
-        this.printer2 = printer;
-    }
-
-    public Client(IPrinter printer, IPrinter printer2) {
-        this.printer = printer;
-        this.printer2 = printer2;
-    }
+    @Autowired
+    private Map<String, IPrinter> allPrintersMap;
 
     public void doeWat() {
         this.printer.print("Hello from client!");
@@ -41,7 +28,11 @@ public class Client {
     }
 
     public void printAlles() {
+        System.out.println("Printing all printers:");
         allPrinters.forEach(p -> p.print("Hello allPrinters printer!"));
+
+        System.out.println("Printing all printers as map:");
+        allPrintersMap.forEach((key, value) -> System.out.println(key + " - " + value));
     }
 
     @PostConstruct
