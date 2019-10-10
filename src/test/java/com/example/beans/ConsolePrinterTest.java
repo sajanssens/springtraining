@@ -8,19 +8,25 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ConsolePrinterTest {
 
     @Mock Logger log;
+    @Mock ContactService contactService;
     @InjectMocks @Autowired ConsolePrinter consolePrinter;
 
     @Test
     public void print() {
-        // doNothing().when(log).info(anyString());
+        // given
+        doNothing().when(log).info(anyString());
+        when(contactService.get()).thenReturn(new Contact("MOCK!!!"));
+
+        // when
         consolePrinter.print("Hoi");
-        verify(log, times(1)).info("Hoi");
+
+        // then
+        verify(log, times(1)).info("Hoi"+"MOCK!!!");
     }
 }

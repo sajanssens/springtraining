@@ -23,6 +23,9 @@ public class SpringBootApp implements CommandLineRunner {
     @Override public void run(String... args) throws Exception {
         IPrinter bean = (IPrinter) ctx.getBean("consolePrinter");
         bean.print("Hoi!");
+
+        IPrinter filePrinter = (IPrinter) ctx.getBean("filePrinter");
+        filePrinter.print("Hallo!");
     }
 
     @Bean @Scope("prototype")
