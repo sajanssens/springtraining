@@ -27,6 +27,6 @@ public class ConsolePrinterTest {
         consolePrinter.print("Hoi");
 
         // then
-        verify(log, times(1)).info("Hoi"+"MOCK!!!");
+        verify(log, times(1)).info("Hoi" + "MOCK!!!");
     }
 }
