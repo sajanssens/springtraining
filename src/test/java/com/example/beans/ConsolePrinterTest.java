@@ -19,7 +19,7 @@ public class ConsolePrinterTest {
 
     @Test
     public void print() {
-        // given
+        // given (setup mock behaviour)
         doNothing().when(log).info(anyString());
         when(contactService.get()).thenReturn(new Contact("MOCK!!!"));
 
